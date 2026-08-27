@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "u+Rz06C1oJo=",
+  "dgSpecHash": "TAm+uJTlAO4=",
   "success": true,
   "projectFilePath": "/home/Henri/Dokumente/projects/c#/account-system-cs/account-system-cs.csproj",
   "expectedPackageFiles": [
+    "/home/Henri/.nuget/packages/spectre.console/0.57.2/spectre.console.0.57.2.nupkg.sha512",
+    "/home/Henri/.nuget/packages/spectre.console.ansi/0.57.2/spectre.console.ansi.0.57.2.nupkg.sha512",
     "/home/Henri/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.11/microsoft.aspnetcore.app.ref.10.0.11.nupkg.sha512"
   ],
   "logs": []
