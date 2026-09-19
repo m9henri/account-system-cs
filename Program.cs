@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace account_system_cs;
 
@@ -9,10 +8,9 @@ class Program
 
     static void Main(string[] args)
     {
-        AddAccountInterface();
         StartSelection();
 
-        // creating of new accounts with passwords
+        // todo:
         // logging into the new accounts
         // accounts having different permissions (root, normal user for now)
         // deleting accounts from list if you have root perms
@@ -34,7 +32,7 @@ class Program
                 LoginProcess();
                 break;
             case "Create New Account":
-                AddAccountInterface();
+                AddAccountProcess();
                 break;
             case "Exit":
                 Environment.Exit(0);
@@ -53,8 +51,17 @@ class Program
 
         if (!(username is null || password is null)) // IF user typed in his username and password, this is too confusing and I'm too stupid to do recursion
         {
-            Console.WriteLine($"Cool! You logged in with username {username} and password {password}"); // placeholder
-            LoginManager(username, password);
+            bool check = LoginManager(username, password);
+            if (check)
+            {
+                // Account Interface
+            }
+            else
+            {
+                Console.WriteLine("Your given account information was incorrect.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
         }
         else // if user did NOT type in his username or password
         {
@@ -63,18 +70,22 @@ class Program
         }
     }
 
-    static void LoginManager(string username, string password)
+    static bool LoginManager(string username, string password)
     {
         string[] accountList = File.ReadAllLines(database); // For going through the list of all accounts
-        string[] accountInfo = new string[3]; // For initializing going through username and password
 
         for (int i = 0; i < accountList.Length; i++)
         {
             accountInfo = accountList[i].Split(',');
+            if (accountInfo[1] == username && accountInfo[2] == password)
+            {
+                return 1; // If it found matching username and password
+            }
         }
+        return 0; // If username nor password matched
     }
 
-    static void AddAccountInterface()
+    static void AddAccountProcess()
     {
         Console.Clear();
 
