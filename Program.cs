@@ -94,7 +94,8 @@ class Program
         Console.Write("Enter new password: ");
         string? password = Console.ReadLine();
         Console.Write($"Should {username} have root access? (y/N) ");
-        char rootAccess = Console.ReadKey().KeyChar;
+        char rootCheck = Console.ReadKey().KeyChar;
+        bool rootAccess = rootCheck == 'y';
 
         if (!(username is null || password is null)) // IF user typed in his username and password, this is too confusing and I'm too stupid to do recursion
         {
@@ -110,9 +111,10 @@ class Program
         }
     }
 
-    static void AddAccount(string username, string password)
+    static void AddAccount(string username, string password, bool rootAccess)
     {
-        string inputBuffer = username + "," + password + ",user\n";
+        string root = rootAccess ? "root" : "user";
+        string inputBuffer = username + "," + password + "," + root + "\n";
         File.AppendAllText(database, inputBuffer);
     }
 }
