@@ -73,16 +73,17 @@ class Program
     static bool LoginManager(string username, string password)
     {
         string[] accountList = File.ReadAllLines(database); // For going through the list of all accounts
+        string[] accountInfo = new string[3];
 
         for (int i = 0; i < accountList.Length; i++)
         {
             accountInfo = accountList[i].Split(',');
             if (accountInfo[1] == username && accountInfo[2] == password)
             {
-                return 1; // If it found matching username and password
+                return true; // If it found matching username and password
             }
         }
-        return 0; // If username nor password matched
+        return false; // If username nor password matched
     }
 
     static void AddAccountProcess()
